@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>备忘录2</title>
+    <style>
+    #root{
+        border-color: black;
+        border:3px solid;
+        width:500px;
+        height:500px; 
+        position:absolute;
+        top:17%;
+        left:27%;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .b{
+        width:350px;
+        height:30px;
+        position: absolute;
+        top:10%;
+        left: 15%;
+    } 
+    .sou{
+        width:270px;
+        height: 30px;
+    }
+    .suo{
+        width:50px;
+        height:35px;
+    }  
+    .c{
+        width:60px;
+        height:22px; 
+    }
+    .jia{
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        bottom: 5%;
+        right: 5%;
+    }
+    .d{
+        background-color:pink;
+        height:320px;
+        width:360px; 
+        position:absolute;
+        top:20%; 
+        right: 15%;
+    }
+    .e{
+        width:270px;
+        height: 30px; 
+       opacity: 0.5;
+    }
+    .f{
+        width:352px;
+        height: 277px;
+        opacity: 0.5;
+
+    }
+    .f::-webkit-input-placeholder{
+        position:absolute;
+        top:5%;
+    }
+    .dodo{
+       width: 350px;
+       height:270px;
+       text-align: left;
+       position: absolute;
+       top:20%;
+       left: 13%;
+    }
+    .delete{
+        width: 20px;
+        height: 20px;
+        float: right;
+    }
+    .que{
+        width:80px;
+        height:36px;
+    }
+   
+    </style>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    
+</head>
+<body>
+    <div id ="root">
+      <div class="a">
+        <div class="b">  <input class="sou" type="text" placeholder="搜索备忘录事项"><button class="suo">搜索</button>
+        </div>
+        <div class="dodo">
+            <li class="todo" v-for="(index,items) in list">
+                <label @click="chuxian" >{{items.name}}</label>
+                <div v-show="chu">{{items.word}}</div>
+                <button @click="del(items.id)" class="delete">x</button>
+            </li>
+            
+        </div>
+        <img  class="jia" v-on:click="myadd" src="..\js\jia.png">
+        <div class="d" v-show="add">
+            <input class="e" type="text" v-model="todoname" placeholder="请输入标题"><button class="que" v-on:click="addtwo">确定</button>
+            <input class="f" type="text"v-model="todoword" placeholder="请输入内容">  
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip=false
+    const vm=new Vue({
+        el:'#root',
+        data:{
+            todoname:'',
+            todoword:'',
+            add:false,
+            list:[
+                {id: '',name:'实例备忘录',word:''},
+            ],
+            word:'',
+            chu:false,
+        },
+        methods: {
+            myadd:function(){
+                this.add=!this.add
+            },
+            addtwo:function(){
+                if (this.todoname.trim()===''){
+                    alert('请输入备忘录标题')
+                    return
+                }
+                 this.add=!this.add,
+                 this.list.unshift({
+                    id: +new Date(),
+                    name:this.todoname,
+                    word:this.todoword
+                })
+                this.todoname=''
+                this.todoword=''
+            },
+            chuxian:function(){
+                this.chu=!this.chu
+            },
+            del(id){
+            this.list=this.list.filter(items=>items.id!==id)
+            },
+
+        },
+        
+    })
+           
+   </script> 
+
+</html>

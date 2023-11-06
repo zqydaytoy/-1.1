@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>备忘录1</title>
+      <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<style>
+    #root{
+        width: 500px;
+        height: 350px;
+        border: 2px solid;
+        border-color: brown;
+        position: absolute;
+        top: 27%;
+        left: 34%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+    }
+    .biaoti{
+        width: 70px;
+        height: 25px;
+        position: absolute;
+        top:10%;
+        color: palevioletred;
+        text-align: center;
+        font-size: 35px;
+
+    }
+    .dan{
+        width: 350px;
+        height: 150px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .zhuce{
+        float: right;
+        color: palevioletred;
+    }
+    .lu{
+        float: left;
+        height: 30px;
+        width: 230px;
+        border-left: 30px;
+        border-right: 30px;
+        border-radius: 30px;
+        background-color:palevioletred;
+        color: aliceblue;
+        font-size: 15px;
+        text-align: center;
+        justify-content: center;
+        
+    }
+    
+    
+</style>
+<body>
+      <!--准备好一个容器-->
+      <div id="root">
+        <div class="biaoti">注册</div>
+        <div class="dan">
+        <form @submit.prevent="demo">
+            账号：<input type="text" v-model.trim="account"><br/><br/>
+            密码：<input type="password" v-model="password"><br/><br/>
+            <a :href="url" class="lu">登录</a> <br/><br/>
+            <button class="zhuce">注册</button>
+        </form>
+        </div>
+      </div>
+</body>
+
+    <script type="text/javascript">
+         new Vue({
+            el:'#root',
+            data:{
+               account:'',
+              password:'',
+              url:'http://127.0.0.1:5500/%E5%A4%87%E5%BF%98%E5%BD%95/%E5%A4%87%E5%BF%98%E5%BD%952.html',
+            },
+            methods: {
+                demo(){
+                   console.log(JSON.stringify(this._data))
+                }
+            }
+
+        })
+    </script>
+</html>
